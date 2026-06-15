@@ -8,8 +8,8 @@ export interface SyncPayload {
     data: any;
 }
 
-export interface iSyncProvider {
-    readonly providerName: string;
+export interface ISyncProvider {
+    readonly providerName: string
     readonly supportDomains: BusinessDomain[];
 
     /** 
