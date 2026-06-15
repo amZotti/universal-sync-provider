@@ -7,7 +7,7 @@ export class SlackProvider implements ISyncProvider {
 
     readonly providerName = 'Slack';
     // Slack only cares about communications.
-    readonly supportDomains = [BusinessDomain.COMMUNICATIONS];
+    readonly supportedDomains = [BusinessDomain.COMMUNICATIONS];
 
     async sync(domain: BusinessDomain, payload: SyncPayload): Promise<boolean> {
         this.logger.log(`[API MOCK] Posting ${domain} message to ${this.providerName}...`);

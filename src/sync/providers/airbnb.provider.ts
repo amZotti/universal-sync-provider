@@ -7,7 +7,7 @@ export class AirbnbProvider implements ISyncProvider {
 
     readonly providerName = "Airbnb";
     // Airbnb only cares about property listings
-    readonly supportDomains = [BusinessDomain.LISTINGS];
+    readonly supportedDomains = [BusinessDomain.LISTINGS];
 
     async sync(domain: BusinessDomain, payload: SyncPayload): Promise<boolean> {
         this.logger.log(`[API MOCK] Syncing ${domain} data to ${this.providerName}...`);

@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { UniversalSyncService } from './sync/universal-sync.service';
+import { BusinessDomain } from './sync/interfaces/sync.interface';
+import type { SyncPayload } from './sync/interfaces/sync.interface';
 
-@Controller()
+@Controller('sync')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly syncService: UniversalSyncService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post(':domain')
+  async triggerSync(
+    @Param('domain') domain: string,
+    @Body() payload: SyncPayload,
+  ) {
+    const businessDomain = domain.toUpperCase() as BusinessDomain;
+
+    // Fire and forget, or await depending on requirement.
+    // Awaiting here so the HTTP response finishes after the sync.
+    await this.syncService.synchronize(businessDomain, payload);
+
+    return {
+      message: `Sync initiated for ${businessDomain}`,
+      status: 'success',
+    };
   }
 }

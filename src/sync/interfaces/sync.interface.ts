@@ -3,17 +3,17 @@ export enum BusinessDomain {
     COMMUNICATIONS = 'COMMUNICATIONS',
 }
 
-export interface SyncPayload {
+export class SyncPayload {
     id: string;
     data: any;
 }
 
 export interface ISyncProvider {
     readonly providerName: string
-    readonly supportDomains: BusinessDomain[];
+    readonly supportedDomains: BusinessDomain[];
 
     /** 
-     * Executes the syncrhronization logic for the external platform.
+     * Executes the synchronization logic for the external platform.
      */
     sync(domain: BusinessDomain, payload: SyncPayload): Promise<boolean>;
 }

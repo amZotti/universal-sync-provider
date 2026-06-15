@@ -17,7 +17,7 @@ export class UniversalSyncService {
 
         // 1. Find all providers that support this specific domain
         const capableProviders = this.providers.filter((provider) => 
-            provider.supportDomains.includes(domain),
+            provider.supportedDomains.includes(domain),
         );
 
         if (capableProviders.length === 0) {
