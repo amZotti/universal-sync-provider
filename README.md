@@ -28,23 +28,28 @@ If this were moving into a production environment dealing with high-throughput s
 ## How to Run & Test
 
 **1. Install dependencies and start the server:**
-\`\`\`bash
+
+```bash
 npm install
 npm run start:dev
-\`\`\`
+```
 
 **2. Test Domain Routing (Listings):**
 This should only trigger the Airbnb provider.
-\`\`\`bash
+
+```bash
 curl -X POST http://localhost:3000/sync/listings \
 -H "Content-Type: application/json" \
 -d '{"id": "prop-123", "data": {"title": "Beachhouse", "price": 250}}'
-\`\`\`
+```
 
 **3. Test Concurrent Execution (Communications):**
 This should concurrently trigger both the Gmail and Slack providers.
-\`\`\`bash
+
+```bash
 curl -X POST http://localhost:3000/sync/communications \
 -H "Content-Type: application/json" \
 -d '{"id": "msg-456", "data": {"to": "host@email.com", "body": "Hello!"}}'
-\`\`\`
+```
+
+```
